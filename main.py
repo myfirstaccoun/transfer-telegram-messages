@@ -4,8 +4,10 @@ import asyncio
 # البيانات الأساسية
 API_ID = 29224979
 API_HASH = "c43959fea9767802e111a4c6cf3b16ec"
-SOURCE_CHANNEL = "@lllkkkkjjjpoi"
-TARGET_CHANNEL = "@polbhiogj"
+SOURCE_CHANNEL = "@droos1111"
+TARGET_CHANNEL = "@doros_dr_ahmed_rajab"
+# SOURCE_CHANNEL = "@lllkkkkjjjpoi"
+# TARGET_CHANNEL = "@polbhiogj"
 
 client = TelegramClient(
     session="user_session",  # اسم ملف الجلسة
