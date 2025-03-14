@@ -18,11 +18,14 @@ def run_server():
 threading.Thread(target=run_server, daemon=True).start()
 
 # ------------------- #
+
 # البيانات الأساسية
 API_ID = 29224979
 API_HASH = "c43959fea9767802e111a4c6cf3b16ec"
 SOURCE_CHANNEL = "@droos1111"
 TARGET_CHANNEL = "@doros_dr_ahmed_rajab"
+# SOURCE_CHANNEL = "@lllkkkkjjjpoi"
+# TARGET_CHANNEL = "@polbhiogj"
 
 client = TelegramClient(
     session="user_session",  # اسم ملف الجلسة
@@ -49,8 +52,8 @@ async def keep_alive():
 async def main():
     await client.start()
     
-    # تشغيل الفتش الدائم بفواصل عشوائية
-    asyncio.create_task(keep_alive())
+    # # تشغيل الفتش الدائم بفواصل عشوائية
+    # asyncio.create_task(keep_alive())
 
     # التأكد من العضوية في القناة المصدر
     try:
