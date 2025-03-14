@@ -2,6 +2,7 @@ from flask import Flask
 import threading
 import aiohttp
 import asyncio
+import random  # استيراد مكتبة العشوائية
 from telethon import TelegramClient, events
 
 # تشغيل سيرفر Flask للحفاظ على تشغيل التطبيق في Koyeb
@@ -17,7 +18,6 @@ def run_server():
 threading.Thread(target=run_server, daemon=True).start()
 
 # ------------------- #
-
 # البيانات الأساسية
 API_ID = 29224979
 API_HASH = "c43959fea9767802e111a4c6cf3b16ec"
@@ -32,7 +32,7 @@ client = TelegramClient(
     device_model="Message Forwarder"
 )
 
-# دالة لعمل fetch كل فترة
+# دالة لعمل fetch بفواصل عشوائية بين 5 و 10 دقائق
 async def keep_alive():
     while True:
         try:
@@ -41,12 +41,15 @@ async def keep_alive():
                     print(f"✅ Fetched Google, Status: {response.status}")
         except Exception as e:
             print(f"❌ Fetch error: {e}")
-        await asyncio.sleep(30)  # يعمل الفتش كل 30 ثانية
+        
+        wait_time = random.randint(300, 600)  # وقت عشوائي بين 5 و 10 دقائق
+        print(f"⏳ Waiting {wait_time} seconds before next fetch...")
+        await asyncio.sleep(wait_time)
 
 async def main():
     await client.start()
-
-    # تشغيل الفتش الدائم
+    
+    # تشغيل الفتش الدائم بفواصل عشوائية
     asyncio.create_task(keep_alive())
 
     # التأكد من العضوية في القناة المصدر
