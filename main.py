@@ -1,3 +1,19 @@
+from flask import Flask
+import threading
+
+app = Flask(__name__)
+
+@app.route('/')
+def health_check():
+    return "OK", 200  # Koyeb هيشوف إن التطبيق شغال
+
+def run_server():
+    app.run(host="0.0.0.0", port=8000)
+
+threading.Thread(target=run_server, daemon=True).start()
+
+# ------------------- #
+
 from telethon import TelegramClient, events
 import asyncio
 
