@@ -1,6 +1,10 @@
 from flask import Flask
 import threading
+import aiohttp
+import asyncio
+from telethon import TelegramClient, events
 
+# تشغيل سيرفر Flask للحفاظ على تشغيل التطبيق في Koyeb
 app = Flask(__name__)
 
 @app.route('/')
@@ -14,16 +18,11 @@ threading.Thread(target=run_server, daemon=True).start()
 
 # ------------------- #
 
-from telethon import TelegramClient, events
-import asyncio
-
 # البيانات الأساسية
 API_ID = 29224979
 API_HASH = "c43959fea9767802e111a4c6cf3b16ec"
 SOURCE_CHANNEL = "@droos1111"
 TARGET_CHANNEL = "@doros_dr_ahmed_rajab"
-# SOURCE_CHANNEL = "@lllkkkkjjjpoi"
-# TARGET_CHANNEL = "@polbhiogj"
 
 client = TelegramClient(
     session="user_session",  # اسم ملف الجلسة
@@ -33,17 +32,30 @@ client = TelegramClient(
     device_model="Message Forwarder"
 )
 
+# دالة لعمل fetch كل فترة
+async def keep_alive():
+    while True:
+        try:
+            async with aiohttp.ClientSession() as session:
+                async with session.get("https://google.com") as response:
+                    print(f"✅ Fetched Google, Status: {response.status}")
+        except Exception as e:
+            print(f"❌ Fetch error: {e}")
+        await asyncio.sleep(30)  # يعمل الفتش كل 30 ثانية
+
 async def main():
-    # بدء تسجيل الدخول
     await client.start()
-    
+
+    # تشغيل الفتش الدائم
+    asyncio.create_task(keep_alive())
+
     # التأكد من العضوية في القناة المصدر
     try:
         await client.get_entity(SOURCE_CHANNEL)
     except:
         await client.join_chat(SOURCE_CHANNEL)
         print("✅ تم الانضمام للقناة المصدر")
-    
+
     # تعريف معالج الرسائل
     @client.on(events.NewMessage(chats=SOURCE_CHANNEL))
     async def message_handler(event):
@@ -52,7 +64,7 @@ async def main():
             print(f"تم نقل الرسالة ({event.id}) بنجاح")
         except Exception as e:
             print(f"خطأ في النقل: {str(e)}")
-    
+
     print("⚡ البوت يعمل الآن! استخدم Ctrl+C للإيقاف")
     await client.run_until_disconnected()
 
