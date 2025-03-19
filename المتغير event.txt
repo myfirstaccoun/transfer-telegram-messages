@@ -1,0 +1,21 @@
+<class 'telethon.events.newmessage.NewMessage.Event'> 
+NewMessage.Event(
+    original_update=UpdateNewChannelMessage(
+        message=Message(
+            id=79, peer_id=PeerChannel(channel_id=2404747465),
+            date=datetime.datetime(
+                2025, 3, 19, 14, 18, 6, tzinfo=datetime.timezone.utc
+            ),
+            message='السلام عليكم', out=True, mentioned=False, media_unread=False, silent=False, post=True, from_scheduled=False, legacy=False, edit_hide=False, pinned=False, noforwards=False, invert_media=False, offline=False, video_processing_pending=False, from_id=None, from_boosts_applied=None, saved_peer_id=None, fwd_from=None, via_bot_id=None, via_business_bot_id=None, reply_to=None, media=None, reply_markup=None, entities=[], views=1, forwards=0, replies=None, edit_date=None, post_author=None, grouped_id=None, reactions=None, restriction_reason=[], ttl_period=None, quick_reply_shortcut_id=None, effect=None, factcheck=None, report_delivery_until_date=None
+        ),
+        pts=103, pts_count=1
+    ),
+    pattern_match=None,
+    message=Message(
+        id=79, peer_id=PeerChannel(channel_id=2404747465),
+        date=datetime.datetime(
+            2025, 3, 19, 14, 18, 6, tzinfo=datetime.timezone.utc
+        ),
+        message='السلام عليكم', out=True, mentioned=False, media_unread=False, silent=False, post=True, from_scheduled=False, legacy=False, edit_hide=False, pinned=False, noforwards=False, invert_media=False, offline=False, video_processing_pending=False, from_id=None, from_boosts_applied=None, saved_peer_id=None, fwd_from=None, via_bot_id=None, via_business_bot_id=None, reply_to=None, media=None, reply_markup=None, entities=[], views=1, forwards=0, replies=None, edit_date=None, post_author=None, grouped_id=None, reactions=None, restriction_reason=[], ttl_period=None, quick_reply_shortcut_id=None, effect=None, factcheck=None, report_delivery_until_date=None
+    )
+)
